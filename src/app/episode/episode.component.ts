@@ -12,10 +12,11 @@ import { Router, ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router'
 })
 export class EpisodeComponent implements OnInit {
   episode: Episode;
-  constructor(private episodeService: EpisodeService, private ar: ActivatedRouteSnapshot) { }
+  constructor(private episodeService: EpisodeService, private ar: ActivatedRoute) { }
 
   ngOnInit() {
-    this.episodeService.getEpisode(this.ar.paramMap.get('id')).subscribe(episode => {
+    const id = this.ar.snapshot.paramMap.get('id');
+    this.episodeService.getEpisode(id).subscribe(episode => {
       this.episode = episode;
     })
   }

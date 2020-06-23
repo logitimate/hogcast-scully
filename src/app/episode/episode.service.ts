@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { TransferStateService } from '@scullyio/ng-lib-v8';
 import { Observable } from 'rxjs';
+import { TransferStateService } from '@scullyio/ng-lib';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,10 @@ export class EpisodeService {
   }
 
   getEpisode(id: string): Observable<Episode> {
-    return this.http.get<Episode>(`${environment.api}/episodes/${id}`)
+    return this.transferState.useScullyTransferState(
+      `episode${id}`,
+      this.http.get<Episode>(`${environment.api}/episodes/${id}`)
+    )
   }
 }
 

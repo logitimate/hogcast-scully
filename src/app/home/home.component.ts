@@ -4,7 +4,7 @@ import { EpisodeService, Episode } from '../episode/episode.service';
 @Component({
   selector: 'app-home',
   template: `
-    <div *ngFor="let episode of episodes" class="mb-2">
+    <div *ngFor="let episode of episodes" class="mb-2" [routerLink]="['/episode/', episode.id]">
       {{episode.name}}
     </div>
   `,
