@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { TransferStateService } from '@scullyio/ng-lib';
+import { Episode } from '../models/episode';
 
 @Injectable({
   providedIn: 'root'
@@ -24,18 +25,4 @@ export class EpisodeService {
       this.http.get<Episode>(`${environment.api}/episodes/${id}`)
     )
   }
-}
-
-
-export interface Episode {
-  id: number;
-  name: string;
-  description: string;
-  link: string;
-  summary: string;
-  publishDate: Date;
-  duration: string;
-  keywords: string;
-  imageLink: string;
-  timeStamps?: Array<string>
 }

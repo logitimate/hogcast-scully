@@ -1,12 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { EpisodeService, Episode } from './episode.service';
+import { EpisodeService } from './episode.service';
 import { Router, ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
+import { Episode } from '../models/episode';
 
 @Component({
   selector: 'app-episode',
   template: `
-    <h1>This is an episode</h1>
-    <pre>{{episode|json}}</pre>
+  <div class="container mt-5" *ngIf="episode">
+    <button class="btn btn-primary" (click)="testHydration()">Test Hydration</button>
+    <h1>{{episode.name}}</h1>
+    <p>{{episode.description}}</p>
+    <img src="/assets/hogcast-team.jpg" alt="Chuck,Logan,Colby" height="400px;" class="d-block m-auto">
+    <audio [src]="episode.link" controls class="w-100 mt-4">
+        <source [src]="episode.link" type="audio/mpeg">
+    </audio> 
+  </div>
   `,
   styles: []
 })
@@ -19,6 +27,11 @@ export class EpisodeComponent implements OnInit {
     this.episodeService.getEpisode(id).subscribe(episode => {
       this.episode = episode;
     })
+  }
+
+
+  testHydration() {
+    console.log('testing angular hydration');
   }
 
 }
