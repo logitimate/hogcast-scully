@@ -1,5 +1,18 @@
 
+
+
+
+
+
+
+
+
+
+
+
+
 ----------------------------------
 Using stored unhandled routes!.
    To discover new routes in the angular app use "npm run scully -- --scanRoutes"
 ----------------------------------
+running in watch-mode, routefile in source assets will not be updated
